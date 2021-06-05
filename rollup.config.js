@@ -42,7 +42,7 @@ export default [
     output: {
       file: pkg.browser.replace(/\.min.js$/, '.js'),
       format: 'umd',
-      name: '<project>'
+      name: 'tenure'
     },
     plugins: [
       nodeResolve({ browser: true }),
@@ -62,7 +62,7 @@ export default [
     output: {
       file: pkg.browser,
       format: 'umd',
-      name: '<project>'
+      name: 'tenure'
     },
     plugins: [
       nodeResolve({ browser: true }),

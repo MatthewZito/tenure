@@ -6,9 +6,11 @@
 
 ```bash
 npm install tenure
+```
 
-# OR
+OR
 
+```bash
 yarn add tenure
 ```
 
