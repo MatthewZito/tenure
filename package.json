@@ -1,6 +1,6 @@
 {
   "name": "tenure",
-  "version": "0.0.0-development",
+  "version": "0.0.1",
   "description": "An manageable LRU cache and configurable eviction policy",
   "main": "./dist/tenure.cjs.js",
   "browser": "./dist/tenure.umd.min.js",
