@@ -1,7 +1,7 @@
 {
   "name": "tenure",
   "version": "0.0.0-development",
-  "description": "An LRU cache that offers easy maintenance",
+  "description": "An manageable LRU cache and configurable eviction policy",
   "main": "./dist/tenure.cjs.js",
   "browser": "./dist/tenure.umd.min.js",
   "module": "./dist/tenure.es.js",
@@ -17,10 +17,9 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "npm run prebuild && npm run build",
+    "prepublishOnly": "rimraf ./dist && npm run build",
     "lint": "eslint 'lib/**/*.js' --no-fix",
     "lint:fix": "eslint 'lib/**/*.js' --fix",
-    "prebuild": "rimraf ./dist",
     "prerelease": "npm pack && tar -xvzf *.tgz && rimraf package *.tgz",
     "semantic-release": "semantic-release",
     "test": "tape -r 'esm' './__tests__/**/*.test.js'",
