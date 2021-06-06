@@ -3,7 +3,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 
-import babelrc from './build/babel.config'; // must import, as base babelrc is needed by jest
+import babelrc from './babel.config'; // must import, as base babelrc is needed by jest
 
 import pkg from './package.json';
 
@@ -14,7 +14,7 @@ export default [
     output: {
       file: pkg.main,
       format: 'cjs',
-      // exports: 'named'
+      exports: 'default'
     },
     plugins: [
       nodeResolve(),
