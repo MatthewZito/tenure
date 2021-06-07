@@ -18,8 +18,8 @@ test(`${subject} pops off entries if it meets or exceeds the capacity`, t => {
 	lru.put('END', 6);
 	lru.put('END', 6);
 
-	t.equals(lru.adapter.length, cap);
-	t.equals(lru.adapter.head.data.key, 'END');
+	t.equals(lru.adapter.size(), cap);
+	t.equals(lru.adapter.head().value.key, 'END');
 	t.equals(lru.cache.size, cap);
 	t.equals(lru.get('key1'), null);
 	t.end();
@@ -38,13 +38,13 @@ test(`${subject} moves the most recently retrieved value to the head of its inte
 		i++;
 	}
 
-	t.equals(lru.adapter.head.data.key, `key${i - 1}`);
-	t.equals(lru.adapter.head.data.value, i - 1);
+	t.equals(lru.adapter.head().value.key, `key${i - 1}`);
+	t.equals(lru.adapter.head().value.data, i - 1);
 
 	const recent = lru.get('key3');
 
-	t.equals(lru.adapter.head.data.key, 'key3');
-	t.equals(lru.adapter.head.data.value, recent);
+	t.equals(lru.adapter.head().value.key, 'key3');
+	t.equals(lru.adapter.head().value.data, recent);
 	t.end();
 });
 
@@ -108,36 +108,36 @@ test(`${subject} internal list maintains integrity when compared to manually obs
 	const lru = init(cap);
 
 	lru.put('key1'); // head = tail = key1
-	t.equals(lru.adapter.head, lru.adapter.tail);
-	t.equals(lru.adapter.head.data.key, 'key1');
+	t.equals(lru.adapter.head(), lru.adapter.tail());
+	t.equals(lru.adapter.head().value.key, 'key1');
 
 	lru.put('key2'); // head = k2, tail = k1
-	t.equals(lru.adapter.head.data.key, 'key2');
-	t.equals(lru.adapter.tail.data.key, 'key1');
+	t.equals(lru.adapter.head().value.key, 'key2');
+	t.equals(lru.adapter.tail().value.key, 'key1');
 	t.equals(lru.adapter.size(), 2);
 
 	lru.get('key1'); // head = k1, tail = k2
-	t.equals(lru.adapter.head.data.key, 'key1');
-	t.equals(lru.adapter.tail.data.key, 'key2');
+	t.equals(lru.adapter.head().value.key, 'key1');
+	t.equals(lru.adapter.tail().value.key, 'key2');
 	t.equals(lru.adapter.size(), 2);
 
 	lru.put('key3'); // head = k3, tail = k2  | k3, k1, k2 |
-	t.equals(lru.adapter.head.data.key, 'key3');
-	t.equals(lru.adapter.tail.data.key, 'key2');
+	t.equals(lru.adapter.head().value.key, 'key3');
+	t.equals(lru.adapter.tail().value.key, 'key2');
 	t.equals(lru.adapter.size(), 3);
 
 	lru.get('key1'); // | k1, k3, k2 |
-	t.equals(lru.adapter.head.data.key, 'key1');
-	t.equals(lru.adapter.tail.data.key, 'key2');
+	t.equals(lru.adapter.head().value.key, 'key1');
+	t.equals(lru.adapter.tail().value.key, 'key2');
 	t.equals(lru.adapter.size(), 3);
 
 	lru.put('key4'); // head = k4, tail = k1 -> | k4, k1, k3 |
-	t.equals(lru.adapter.head.data.key, 'key4');
-	t.equals(lru.adapter.tail.data.key, 'key3');
+	t.equals(lru.adapter.head().value.key, 'key4');
+	t.equals(lru.adapter.tail().value.key, 'key3');
 
 	lru.get('key1'); // head = k1, tail = k3 -> | k1, k4, k3 |
-	t.equals(lru.adapter.head.data.key, 'key1');
-	t.equals(lru.adapter.tail.data.key, 'key3');
+	t.equals(lru.adapter.head().value.key, 'key1');
+	t.equals(lru.adapter.tail().value.key, 'key3');
 	t.equals(lru.adapter.size(), 3);
 
 	t.equals(lru.cache.size, lru.adapter.size());

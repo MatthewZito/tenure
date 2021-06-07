@@ -33,6 +33,15 @@
       "npm run test"
     ]
   },
+  "nodemonConfig": {
+    "ignore": [
+      "*"
+    ],
+    "watch": [
+      "__tests__/**/*.test.js"
+    ],
+    "delay": "2500"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
@@ -54,6 +63,7 @@
     "@rollup/plugin-commonjs": "17.1.0",
     "@rollup/plugin-node-resolve": "11.2.0",
     "babel-eslint": "10.1.0",
+    "connective-tissue": "0.0.1",
     "core-js": "3.9.1",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.21.0",

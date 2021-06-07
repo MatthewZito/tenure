@@ -1,9 +1,0 @@
-{
-  "nodemonConfig": {
-    "ignore": ["*"],
-    "watch": [
-      "__tests__/**/*.test.js"
-    ],
-    "delay": "2500"
-  }
-}
