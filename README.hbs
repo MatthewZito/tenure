@@ -9,6 +9,10 @@ Status](https://travis-ci.com/MatthewZito/tenure.svg?branch=master)](https://tra
 `Tenure` is a manageable LRU cache instance that uses hashmap lookups and an Open Doubly Linked List to enact the
 [Least-Recently Used algorithm](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU))
 
+## Algorithm
+
+![LRU Cache Algorithm](https://github.com/matthewzito/tenure/blob/master/doc/lru.png)
+
 ## Installation
 
 ```bash
@@ -21,27 +25,10 @@ OR
 yarn add tenure
 ```
 
-![LRU Cache Algorithm](https://github.com/matthewzito/tenure/blob/master/doc/lru.png)
 
 ## Supported Environments
 
 `Tenure` currently supports UMD, CommonJS (node versions >= 10), and ESM build-targets
-
-Commonjs:
-
-```js
-var LruCache = require('tenure');
-
-var cache = new LruCache(100, cb);
-```
-
-ESM:
-
-```js
-import LruCache from 'tenure';
-
-const cache = new LruCache(100, cb);
-```
 
 ## API Reference
 

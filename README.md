@@ -8,6 +8,10 @@ Status](https://travis-ci.com/MatthewZito/tenure.svg?branch=master)](https://tra
 `Tenure` is a manageable LRU cache instance that uses hashmap lookups and an Open Doubly Linked List to enact the
 [Least-Recently Used algorithm](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU))
 
+## Algorithm
+
+![LRU Cache Algorithm](https://github.com/matthewzito/tenure/blob/master/doc/lru.png)
+
 ## Installation
 
 ```bash
@@ -20,27 +24,10 @@ OR
 yarn add tenure
 ```
 
-![LRU Cache Algorithm](https://github.com/matthewzito/tenure/blob/master/doc/lru.png)
 
 ## Supported Environments
 
 `Tenure` currently supports UMD, CommonJS (node versions >= 10), and ESM build-targets
-
-Commonjs:
-
-```js
-var LruCache = require('tenure');
-
-var cache = new LruCache(100, cb);
-```
-
-ESM:
-
-```js
-import LruCache from 'tenure';
-
-const cache = new LruCache(100, cb);
-```
 
 ## API Reference
 
@@ -54,7 +41,7 @@ const cache = new LruCache(100, cb);
     * [.get(key)](#LruCache+get) ⇒ <code>any</code> \| <code>null</code>
     * [.put(key, value)](#LruCache+put) ⇒ <code>boolean</code>
     * [.del(key)](#LruCache+del) ⇒ <code>boolean</code>
-    * [.keys()](#LruCache+keys) ⇒
+    * [.keys()](#LruCache+keys) ⇒ <code>array</code>
     * [.has(key)](#LruCache+has) ⇒
     * [.lru()](#LruCache+lru) ⇒ <code>array</code> \| <code>null</code>
     * [.drop()](#LruCache+drop)
@@ -116,8 +103,8 @@ Remove an item corresponding to a given key from the cache, if extant
 
 <br><a name="LruCache+keys"></a>
 
-## lruCache.keys() ⇒
-**Returns**: An array of all keys currently extant in the cache  
+## lruCache.keys() ⇒ <code>array</code>
+**Returns**: <code>array</code> - An array of all keys currently extant in the cache  
 
 <br><a name="LruCache+has"></a>
 
